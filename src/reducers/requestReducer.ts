@@ -9,7 +9,7 @@ const initialState: RequestState = {
   textFailed: 'Failed',
   isRequesting: false,
   isVisible: false,
-  success: false
+  success: undefined
 }
 
 export const requestReducer = (state = initialState, action: Action) => {

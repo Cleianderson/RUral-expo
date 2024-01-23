@@ -23,18 +23,49 @@ function* getWeek() {
 }
 
 function* requestWeek() {
-  yield put<StorageAction>({ type: StorageActionTypes.setIsRequesting, payload: { value: true } })
-  const { data: week, status }: AxiosResponse<Week> = yield call(Api.get, "/thisweek")
+  yield put<StorageAction>({
+    type: StorageActionTypes.setIsRequesting,
+    payload: { value: true },
+  })
+  const { data: week, status }: AxiosResponse<Week> = yield call(
+    Api.get,
+    "/thisweek"
+  )
 
   if (week?.data.length > 0 && status.toString().startsWith("2")) {
+    yield put({
+      type: StorageActionTypes.setTextFailed,
+      payload: { textFailed: "Cardápio atualizado!" },
+    })
     yield updateWeek(week)
+    yield put({
+      type: StorageActionTypes.setSuccess,
+      payload: { success: true },
+    })
+  } else {
+    yield put({
+      type: StorageActionTypes.setTextFailed,
+      payload: {
+        textFailed: "O cardápio dessa semana ainda não está disponível",
+      },
+    })
+    yield put({
+      type: StorageActionTypes.setSuccess,
+      payload: { success: false },
+    })
   }
 
-  yield put({ type: StorageActionTypes.setIsRequesting, payload: { value: false } })
+  yield put({
+    type: StorageActionTypes.setIsRequesting,
+    payload: { value: false },
+  })
 }
 
 function* updateWeek(week: Week) {
-  yield put<StorageAction>({ type: StorageActionTypes.setWeek, payload: { value: week } })
+  yield put<StorageAction>({
+    type: StorageActionTypes.setWeek,
+    payload: { value: week },
+  })
   yield writeWeek()
 }
 
