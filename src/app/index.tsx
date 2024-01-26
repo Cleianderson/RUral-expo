@@ -12,7 +12,8 @@ const isoWeekOfTomorrow = moment().add(1, "days").isoWeek()
 export default function Main() {
   const dispatch = useDispatch()
 
-  const setDay = (day: number) => dispatch({ type: 'SET_DAY', payload: { day } })
+  const setDay = (day: number) =>
+    dispatch({ type: "SET_DAY", payload: { day } })
 
   useEffect(() => {
     let _day = new Date(Date.now()).getDay() - 1
@@ -20,13 +21,13 @@ export default function Main() {
     setDay(_day)
 
     // initalizeOneSignal()
-    // dispatch({type: StorageActionTypes.getFavorites})
+    dispatch({ type: StorageActionTypes.getFavorites })
     dispatch({ type: StorageActionTypes.getWeek })
-    // dispatch({type: StorageActionTypes.getWarnings})
+    dispatch({ type: StorageActionTypes.getWarnings })
   }, [])
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <Stack.Screen
         options={{
           title: "",
@@ -34,6 +35,6 @@ export default function Main() {
         }}
       />
       <Home />
-    </SafeAreaView>
+    </View>
   )
 }

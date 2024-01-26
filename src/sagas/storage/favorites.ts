@@ -19,7 +19,9 @@ function* writeFavorites(favorites: string[]) {
 function* getFavorites() {
   const strFavorites: string = yield call(Storage.getItem, StorageKeys.favorites)
 
-  const favorites = JSON.parse(strFavorites || String([]))
+  console.log(strFavorites)
+
+  const favorites = JSON.parse(strFavorites || '[]')
   yield updateFavorites(favorites)
 }
 
