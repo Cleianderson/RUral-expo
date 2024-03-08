@@ -15,7 +15,7 @@ export const Content = styled.View`
   justify-content: space-around;
 `
 
-export const Button = styled.TouchableOpacity`
+export const Button = styled.Pressable`
   justify-content: center;
   align-items: center;
   /* background: #eee; */

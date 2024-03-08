@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from 'react'
-import { Image, View, ScrollView, Linking, TouchableOpacity } from 'react-native'
+import { Image, View, ScrollView, Linking, Pressable } from 'react-native'
 import * as Style from './styles'
 import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 import CheckBox from '@react-native-community/checkbox'
@@ -667,14 +667,14 @@ const OnboardingComponent = () => {
             Abaixo você pode concordar ou descordar com a coleta de dados. Ainda será possível
             usar o aplicativo mas, você não receberá as notificaçôes
           </Style.Text>
-          <TouchableOpacity
+          <Pressable
             onPress={() => setAccepted(!accepted)}
             style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
             <CheckBox
               value={accepted}
               tintColors={{ true: '#1b2d4f' }} />
             <Style.Text>Concordo com a coleta de dados</Style.Text>
-          </TouchableOpacity>
+          </Pressable>
           <View style={{ alignItems: 'center' }} >
             <Style.AcceptButton onPress={finalizeOnboaring} >
               <Style.Text style={{ color: '#fff', fontWeight: 'bold' }} >Continuar</Style.Text>

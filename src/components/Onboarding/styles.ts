@@ -19,7 +19,7 @@ export const BottomContainer = styled.View`
   align-items: center;
 `
 
-export const NavButton = styled.TouchableOpacity`
+export const NavButton = styled.Pressable`
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -46,7 +46,7 @@ export const DotsContainer = styled.View`
   justify-content: space-around;
 `
 
-export const AcceptButton = styled.TouchableOpacity`
+export const AcceptButton = styled.Pressable`
   background: #1b2d4f;
   border-radius: 5px;
   padding: 10px 15px;

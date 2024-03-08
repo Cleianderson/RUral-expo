@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-export const MenuButton = styled.TouchableOpacity`
+export const MenuButton = styled.Pressable`
   border: 1px solid #ccc;
   border-radius: 10px;
   justify-content: center;

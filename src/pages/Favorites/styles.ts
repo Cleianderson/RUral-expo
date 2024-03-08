@@ -23,7 +23,7 @@ export const TextInput = styled.TextInput`
   margin-left: 5px;
 `
 
-export const Button = styled.TouchableOpacity`
+export const Button = styled.Pressable`
   /* background: #1b2d4f; */
   justify-content: center;
   align-items: center;
@@ -45,7 +45,7 @@ export const FavContainer = styled.View`
 export const FavText = styled.Text`
   flex: 1;
 `
-export const FavButton = styled.TouchableOpacity`
+export const FavButton = styled.Pressable`
   border-radius: 10px;
   border: 1px solid #b61823;
   padding: 3px;

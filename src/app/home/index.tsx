@@ -7,7 +7,7 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons"
 import Suggestion from "~/pages/Suggestion"
 import Favorites from "~/pages/Favorites"
 import Home from "~/pages/Home"
-import { View, TouchableOpacity, Image, Text } from "react-native"
+import { View, Pressable, Image, Text } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { router } from "expo-router"
 
@@ -43,7 +43,7 @@ const RouteHome = () => {
             justifyContent: "space-around",
           }}
         >
-          <TouchableOpacity onPress={() => router.push("warning")}>
+          <Pressable onPress={() => router.push("warning")}>
             {thereIsWarn && (
               <View
                 style={{
@@ -62,14 +62,14 @@ const RouteHome = () => {
             )}
             {/*<Badge visible={thereIsWarn} style={{position: 'absolute', top: -1}} size={12}/>*/}
             <Icon name="bell-outline" color="#1b2d4f" size={25} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={reload}>
+          </Pressable>
+          <Pressable onPress={reload}>
             <Icon name="reload" color="#1b2d4f" size={25} />
-          </TouchableOpacity>
+          </Pressable>
           {__DEV__ && (
-            <TouchableOpacity onPress={() => router.push("config")}>
+            <Pressable onPress={() => router.push("config")}>
               <Icon name="cog" color="#1b2d4f" size={25} />
-            </TouchableOpacity>
+            </Pressable>
           )}
         </View>
       ),

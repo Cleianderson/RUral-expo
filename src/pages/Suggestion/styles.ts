@@ -17,7 +17,7 @@ export const ContainerInput = styled.View`
   align-items: center;
   justify-content: center;
 `
-export const Button = styled.TouchableOpacity`
+export const Button = styled.Pressable`
   padding: 10px 25px;
   /* background: #1b2d4f; */
   justify-content: center;

@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { View, StyleProp, ViewStyle, PressableProps as TouchableOpacityProperties } from 'react-native'
+import { View, StyleProp, ViewStyle, PressableProps as PressableProperties } from 'react-native'
 import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 
 import { Container } from './styles'
@@ -13,7 +13,7 @@ type Prop = {
   notify?: boolean
   size?: number
   focused: boolean
-} & TouchableOpacityProperties
+} & PressableProperties
 
 const Button: React.FC<Prop> = ({ color = '#fff', icon, focused, style, notify, size = 22 }) => {
   return (

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-export const Container = styled.TouchableOpacity<{nested?: boolean}>`
+export const Container = styled.Pressable<{nested?: boolean}>`
     display: flex;
     flex-direction: column;
     align-items: center;

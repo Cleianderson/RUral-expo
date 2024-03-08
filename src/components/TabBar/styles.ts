@@ -18,7 +18,7 @@ export const Content = styled.View`
     height: 100%;
 `
 
-export const Button = styled.TouchableOpacity<CommonProps>`
+export const Button = styled.Pressable<CommonProps>`
   padding: 2px 15px;
     /* border-radius: 50px; */
     /* width: 60px; */

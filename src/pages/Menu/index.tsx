@@ -1,5 +1,5 @@
 import React from "react"
-import { TouchableOpacity, Text } from "react-native"
+import { Pressable, Text } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import Icon from "@expo/vector-icons/MaterialCommunityIcons"
 import { useNavigation } from "@react-navigation/native"
@@ -129,7 +129,7 @@ const Menu = ({ route }) => {
               <FoodText>{extensive[strFood]}</FoodText>
               <FoodDescription>{week.data[day][type][strFood].toUpperCase()}</FoodDescription>
             </MenuContainer>
-            <TouchableOpacity
+            <Pressable
               onPress={() => toggleFavorite(week.data[day][type][strFood])}
               hitSlop={{ top: 5, bottom: 5, left: 5, right: 5 }}
             >
@@ -138,7 +138,7 @@ const Menu = ({ route }) => {
                 color={checkItem(week.data[day][type][strFood]) ? constants.SECOND_COLOR : "#ccc"}
                 size={25}
               />
-            </TouchableOpacity>
+            </Pressable>
           </FoodContainer>
         ))}
       </Content>
@@ -159,14 +159,14 @@ const Menu = ({ route }) => {
           <Icon name="chevron-right" color="#1b2d4f" size={25} />
         </NavButton>
       </Footer>
-      {/* <TouchableOpacity
+      {/* <Pressable
         onPress={navigation.goBack}
         style={{ justifyContent: 'center', alignItems: 'center', padding: 5 }}
       >
         <Text style={{ color: '#1b2d4f', fontWeight: 'bold', textDecorationLine: 'underline' }}>
           voltar
         </Text>
-      </TouchableOpacity> */}
+      </Pressable> */}
     </Container>
   )
 }

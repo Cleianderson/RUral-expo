@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 import constants from '../../service/constants'
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.Pressable`
   align-items: center;
   align-content: center;
   

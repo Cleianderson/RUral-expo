@@ -82,7 +82,7 @@ export const NavBar = styled.View`
   align-items: center;
   padding: 5px 10px;
 `
-export const NavButton = styled.TouchableOpacity`
+export const NavButton = styled.Pressable`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;

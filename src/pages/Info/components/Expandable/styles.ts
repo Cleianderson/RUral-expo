@@ -20,7 +20,7 @@ export const Title = styled.Text`
   font-size: 16px;
 `
 
-export const ExpandButton = styled.TouchableOpacity`
+export const ExpandButton = styled.Pressable`
   background: #eee;
   border-radius: 10px;
   padding: 0px 10px;
