@@ -1,7 +1,7 @@
 import { Stack } from "expo-router/stack"
 import moment from "moment"
 import { useEffect } from "react"
-import { SafeAreaView, View } from "react-native"
+import { View } from "react-native"
 import { useDispatch } from "react-redux"
 
 import Home from "~/app/home"
@@ -27,7 +27,7 @@ export default function Main() {
   }, [])
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: 'yellow' }}>
       <Stack.Screen
         options={{
           title: "",

@@ -6,23 +6,25 @@ type CommonProps = {
 
 export const Container = styled.View`
   /* border: 1px solid; */
-  padding: 10px 0px;
-  /* background: #fff; */
-`
+  padding-bottom: 10px;
+  /* elevation: 10; */
+  `
 
 export const Content = styled.View`
   flex-direction: row;
-  justify-content: space-around;
 `
 
 export const Button = styled.Pressable`
+  min-height: 50px;
   justify-content: center;
   align-items: center;
-  /* background: #eee; */
-  padding: 2px 15px;
-  /* border-radius: 10px; */
+  background: ${({selected}) => (selected ? '#fff' : 'rgb(242, 242, 242)')};
+  padding: 10px 15px 5px 15px;
   border: 0px solid #ccc;
-  padding-bottom: 5px;
+  /* border-radius: ${({selected}) => (selected ? 0 : 10)}px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0; */
 `
 
 export const BText = styled.Text<CommonProps>`

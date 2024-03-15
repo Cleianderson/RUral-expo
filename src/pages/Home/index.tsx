@@ -2,9 +2,11 @@ import React, {
   useCallback,
   useContext,
   useEffect,
-  useRef
+  useRef,
+  useState
 } from "react"
 import {
+  Text,
   FlatList,
   View,
   ViewToken,
@@ -15,14 +17,15 @@ import Svg, { Circle, G, Path, Rect } from "react-native-svg"
 
 import MButton from "./components/MenuButton"
 import WeekIndicator from "./components/WeekIndicator"
-import { Container, Content, EmptyContainer, EmptyText } from "./styles"
+import { Container, Content, EmptyContainer, EmptyText, NavBar, NavButton } from "./styles"
 
 import { useDispatch, useSelector } from "react-redux"
 import Config from "~/contexts/ConfigContext"
+import Menu from "./components/Menu"
 
 const Home = () => {
   const PageFoods = useRef<FlatList<Table> | null>(null)
-  const { width } = useWindowDimensions()
+  const [type, setType] = useState('almoco')
 
   const { configs } = useContext(Config)
   // const foods = useSelector<RootState, Table[] | undefined>(state => state.mainState.foods)
@@ -59,6 +62,13 @@ const Home = () => {
 
     // console.log(width)
   }, [week])
+
+  const _NavButton = useCallback(({ selected }) => (
+    <NavButton selected={type === selected} onPress={() => setType(selected)}>
+      <Text style={
+        type === selected ? { color: '#f9b233', fontWeight: 'bold' } : { color: '#999' }
+      } >{selected === 'almoco' ? 'Almoço' : 'Jantar'}</Text>
+    </NavButton>), [type])
 
   if (week === undefined || week.data.length === 0 || day === undefined) {
     return (
@@ -219,25 +229,30 @@ const Home = () => {
             showsHorizontalScrollIndicator={false}
             horizontal
             pagingEnabled
-            contentContainerStyle={{ alignItems: "center" }}
+            // contentContainerStyle={{ flexGrow: 1, flexDirection: 'row', justifyContent: 'center', alignItems: "center" }}
             onViewableItemsChanged={viewableItemsChanged}
             viewabilityConfig={{
               itemVisiblePercentThreshold: 100,
             }}
             renderItem={({ item, index }) => (
-              <View
-                style={{
-                  justifyContent: "center",
-                  width,
-                }}
-                key={index}
-              >
-                <MButton item={item} launch />
-                <MButton item={item} />
-              </View>
+              <Menu key={index} day={index} item={item} type={type} />
+              // <View
+              //   style={{
+              //     justifyContent: "center",
+              //     width,
+              //   }}
+              //   key={index}
+              // >
+              //   <MButton item={item} launch />
+              //   <MButton item={item} />
+              // </View>
             )}
           />
         </Content>
+        <NavBar>
+          <_NavButton selected={'almoco'} />
+          <_NavButton selected={'jantar'} />
+        </NavBar>
       </Container>
     )
   }
