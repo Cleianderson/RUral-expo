@@ -1,13 +1,10 @@
 import { Stack } from "expo-router/stack"
-import moment from "moment"
 import { useEffect } from "react"
 import { View } from "react-native"
 import { useDispatch } from "react-redux"
 
 import Home from "~/app/home"
 import { StorageActionTypes } from "~/utils/enums"
-
-const isoWeekOfTomorrow = moment().add(1, "days").isoWeek()
 
 export default function Main() {
   const dispatch = useDispatch()

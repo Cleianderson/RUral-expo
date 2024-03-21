@@ -53,14 +53,13 @@ const Home = () => {
   )
 
   useEffect(() => {
-    // if (PageFoods.current !== undefined) {
-    //   if (day !== undefined) {
-    //     PageFoods.current.setPageWithoutAnimation(day)
-    //   }
-    //   dispatch({ type: 'SET_HOME_VIEW', payload: { homeView: PageFoods.current } })
-    // }
+    if (PageFoods.current !== undefined) {
+      if (day) {
+        PageFoods.current!.scrollToIndex({index: day})
+      }
+      // dispatch({ type: 'SET_HOME_VIEW', payload: { homeView: PageFoods.current } })
+    }
 
-    // console.log(width)
   }, [week])
 
   const _NavButton = useCallback(({ selected }) => (
