@@ -39,7 +39,7 @@ const RouteHome = () => {
           style={{
             flexDirection: "row",
             paddingHorizontal: 5,
-            width: 90,
+            width: 150,
             justifyContent: "space-around",
           }}
         >
@@ -66,11 +66,9 @@ const RouteHome = () => {
           <Pressable onPress={reload}>
             <Icon name="reload" color="#1b2d4f" size={25} />
           </Pressable>
-          {__DEV__ && (
-            <Pressable onPress={() => router.push("config")}>
-              <Icon name="cog" color="#1b2d4f" size={25} />
-            </Pressable>
-          )}
+          <Pressable onPress={() => router.push("config")}>
+            <Icon name="cog" color="#1b2d4f" size={25} />
+          </Pressable>
         </View>
       ),
       headerLeft: () => (
