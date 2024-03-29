@@ -25,6 +25,7 @@ import Menu from "./components/Menu"
 
 const Home = () => {
   const PageFoods = useRef<FlatList<Table> | null>(null)
+  const { width } = useWindowDimensions()
   const [type, setType] = useState('almoco')
 
   const { configs } = useContext(Config)
@@ -55,12 +56,16 @@ const Home = () => {
   useEffect(() => {
     if (PageFoods.current !== undefined) {
       if (day) {
-        PageFoods.current!.scrollToIndex({index: day})
+        PageFoods.current!.scrollToIndex({ index: day })
       }
       // dispatch({ type: 'SET_HOME_VIEW', payload: { homeView: PageFoods.current } })
     }
 
   }, [week])
+
+  const getItemLayout = (data: ArrayLike<Table> | null | undefined, index: number) => (
+    { length: width, offset: width * index, index }
+  )
 
   const _NavButton = useCallback(({ selected }) => (
     <NavButton selected={type === selected} onPress={() => setType(selected)}>
@@ -228,6 +233,8 @@ const Home = () => {
             showsHorizontalScrollIndicator={false}
             horizontal
             pagingEnabled
+            getItemLayout={getItemLayout}
+            initialScrollIndex={day}
             // contentContainerStyle={{ flexGrow: 1, flexDirection: 'row', justifyContent: 'center', alignItems: "center" }}
             onViewableItemsChanged={viewableItemsChanged}
             viewabilityConfig={{
