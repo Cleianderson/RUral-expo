@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { BackHandler } from 'react-native'
+import { BackHandler, View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { Container } from './styles'
@@ -11,22 +11,26 @@ const Configuration = () => {
   const { configs, configDispatch } = useContext(Config)
   const { showIndicator, showDateOnIndicator } = configs
 
+  const updateConfig = (data: any) => configDispatch({ type: 'UPDATE_CONFIG', data: { ...data } })
+
   return (
     <Container>
-      <SwitchLabeled
-        label='Mostrar indicador de dias'
-        isActived={showIndicator}
-        onPress={() => configDispatch({ type: 'UPDATE_CONFIG', data: { showIndicator: !showIndicator } })}
-      />
-      <SwitchLabeled
-        nested
-        disabled={showIndicator === false}
-        label='Exibir datas'
-        isActived={showDateOnIndicator}
-        onPress={() => configDispatch({ type: 'UPDATE_CONFIG', data: { showDateOnIndicator: !showDateOnIndicator } })}
-      />
+      <View style={{ flex: 1 }}>
+        <SwitchLabeled
+          label='Mostrar indicador de dias'
+          isActived={showIndicator}
+          onPress={() => updateConfig({ showIndicator: !showIndicator })}
+        />
+        <SwitchLabeled
+          nested
+          disabled={showIndicator === false}
+          label='Exibir datas'
+          isActived={showDateOnIndicator}
+          onPress={() => updateConfig({ showDateOnIndicator: !showDateOnIndicator })}
+        />
+      </View>
       <Button
-        label="Limpar todos os dados"
+        label="LIMPAR TODOS OS DADOS"
         onPress={() => {
           const clear = async () => {
             await AsyncStorage.clear()

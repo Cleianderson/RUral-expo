@@ -12,11 +12,14 @@ function* watchWeek() {
 }
 
 function* getWeek() {
-  const isoWeekOfTomorrow = moment().add(1, "days").isoWeek()
+  const tomorrow = moment().add(1, "days")
+  const weekOfTomorrow = tomorrow.isoWeek()
+  const yeardOfTomorrow = tomorrow.year()
+  
   const strWeek: string = yield call(Storage.getItem, StorageKeys.week)
   const week: Week = JSON.parse(strWeek)
 
-  if (week === null || week.number_week !== isoWeekOfTomorrow) {
+  if (week === null || (week.number_week !== weekOfTomorrow && week.year === yeardOfTomorrow)) {
     yield put<StorageAction>({ type: StorageActionTypes.requestWeek })
   } else {
     yield updateWeek(week)
@@ -24,13 +27,16 @@ function* getWeek() {
 }
 
 function* requestWeek() {
+  const tomorrow = moment().add(1, "days")
+  const weekOfTomorrow = tomorrow.isoWeek()
+  
   yield put<StorageAction>({
     type: StorageActionTypes.setIsRequesting,
     payload: { value: true },
   })
   const { data: week, status }: AxiosResponse<Week> = yield call(
     Api.get,
-    "/thisweek"
+    `/thisweek?week=${weekOfTomorrow}`
   )
 
   if (week?.data.length > 0 && status.toString().startsWith("2")) {

@@ -7,6 +7,7 @@ export const Container = styled.Pressable`
     border: 0px solid #ccc;
     /* border-bottom-width: 1px; */
     padding: 10px 20px;
+    justify-content: center;
 `
 
 export const Text = styled.Text`

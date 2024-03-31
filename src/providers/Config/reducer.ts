@@ -1,10 +1,10 @@
 import { getItem, setItem } from '~/service/Storage'
 
 export function initConfigs () {
-  const loadConfig = async () => (await getItem<Configs>('@RUral:config')).data
+  // const loadConfig = async () => (await getItem<Configs>('@RUral:config')).data
 
   let config: Configs | null = null
-  loadConfig().then((data) => { config = data })
+  // loadConfig().then((data) => { config = data })
 
   if (config === null) {
     return {
