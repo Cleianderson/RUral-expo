@@ -14,6 +14,7 @@ import { router } from "expo-router"
 import TabBar from "~/components/TabBar"
 // import { Badge } from 'react-native-paper'
 import { useSelector, useDispatch } from "react-redux"
+import { StorageActionTypes } from "~/utils/enums"
 
 const TabBottom = createBottomTabNavigator()
 
@@ -28,9 +29,7 @@ const RouteHome = () => {
   const setAction = (fn: string | undefined) =>
     dispatch({ type: "SET_ACTION", payload: { action: fn } })
 
-  const reload = () => {
-    setAction("requestWeek")
-  }
+  const reload = () => dispatch({ type: StorageActionTypes.requestWeek})
 
   useEffect(() => {
     navigation.setOptions({

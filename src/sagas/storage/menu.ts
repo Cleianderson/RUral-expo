@@ -27,6 +27,31 @@ function* getWeek() {
 }
 
 function* requestWeek() {
+  // const setTextFailed = (str: string) => dispatch({ type: 'SET_TEXT_FAILED', payload: { textFailed: str } })
+  // const setTextSuccess = (str: string) => dispatch({ type: 'SET_TEXT_SUCCESS', payload: { textSuccess: str } })
+  // if ((await NetInfo.fetch()).isConnected) {
+  //   setTextFailed('O cardápio ainda não está disponível')
+
+
+
+
+    
+  //   setTextSuccess('Cardápio atualizado!')
+  //   const req = async () => {
+  //     const { data } = await api.get(`/thisweek?week=${isoWeekOfTomorrow}`)
+  //     if (data) {
+  //       updateWeekStorage(data.data, { number_week: data.number_week })
+  //       // setFoods(data.data)
+  //       return true
+  //     }
+  //     return false
+  //   }
+
+  //   return req()
+  // } else {
+  //   yield put({ type: 'SET_TEXT_FAILED', payload: { textFailed: "Parece que você está sem internet" } })
+  // }
+
   const tomorrow = moment().add(1, "days")
   const weekOfTomorrow = tomorrow.isoWeek()
   

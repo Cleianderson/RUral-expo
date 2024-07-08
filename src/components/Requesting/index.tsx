@@ -8,6 +8,7 @@ import constants from '~/service/constants'
 import { updateWeekStorage } from '~/service/Storage'
 import api from '~/service/Api'
 import { Container, Content, Text, ContainerText } from './styles'
+import { StorageActionTypes } from '~/utils/enums'
 
 const isoWeekOfTomorrow = moment().add(1, 'days').isoWeek()
 
@@ -30,63 +31,42 @@ const Requesting: React.FC = () => {
     dispatch({ type: 'SET_IS_REQUESTING', payload: { isRequesting } })
   )
   // const setFoods = (foods: any) => dispatch({ type: 'SET_FOODS', payload: { foods } })
-  const setAction = (fn: string | undefined) => dispatch({ type: 'SET_ACTION', payload: { action: fn } })
-  const setTextFailed = (str: string) => dispatch({ type: 'SET_TEXT_FAILED', payload: { textFailed: str } })
-  const setTextSuccess = (str: string) => dispatch({ type: 'SET_TEXT_SUCCESS', payload: { textSuccess: str } })
+  // const setAction = (fn: string | undefined) => dispatch({ type: 'SET_ACTION', payload: { action: fn } })
+  // const setTextFailed = (str: string) => dispatch({ type: 'SET_TEXT_FAILED', payload: { textFailed: str } })
+  // const setTextSuccess = (str: string) => dispatch({ type: 'SET_TEXT_SUCCESS', payload: { textSuccess: str } })
 
   const closeModal = () => setIsRequesting(false)
-  const setSuccess = (value: boolean | undefined) => dispatch({ type: 'SET_SUCCESS', payload: { success: value } })
-
-  const requestWeek = async () => {
-    if ((await NetInfo.fetch()).isConnected) {
-      setTextFailed('O cardápio ainda não está disponível')
-      setTextSuccess('Cardápio atualizado!')
-      const req = async () => {
-        const { data } = await api.get(`/thisweek?week=${isoWeekOfTomorrow}`)
-        if (data) {
-          updateWeekStorage(data.data, { number_week: data.number_week })
-          // setFoods(data.data)
-          return true
-        }
-        return false
-      }
-
-      return req()
-    } else {
-      setTextFailed('Falha na conexão')
-      return false
-    }
-  }
+  // const setSuccess = (value: boolean | undefined) => dispatch({ type: 'SET_SUCCESS', payload: { success: value } })
 
   useEffect(() => {
-    const actions: { [key: string]: () => Promise<boolean> } = {
-      'requestWeek': requestWeek,
-    }
+    // const actions: { [key: string]: () => Promise<boolean> } = {
+    //   'requestWeek': requestWeek,
+    // }
 
-    if (action !== undefined) {
-      setIsRequesting(true)
-      // opacityValue.setValue(0)
-      setSuccess(undefined)
-      
-      const executeAction = async () => {
-        const selectedAction = actions[action]
-        try {
-          const responseAction = await selectedAction()
-          if (typeof responseAction === 'boolean') {
-            setSuccess(responseAction)
-          }
-        } catch (error) {
-          setSuccess(false)
-        }
-      }
-      try {
-        executeAction()
-      } catch (err) {
-        setSuccess(false)
-      }
+    // if (action !== undefined) {
+    //   setIsRequesting(true)
+    //   // opacityValue.setValue(0)
+    //   setSuccess(undefined)
 
-      setAction(undefined)
-    }
+    //   const executeAction = async () => {
+    //     const selectedAction = actions[action]
+    //     try {
+    //       const responseAction = await selectedAction()
+    //       if (typeof responseAction === 'boolean') {
+    //         setSuccess(responseAction)
+    //       }
+    //     } catch (error) {
+    //       setSuccess(false)
+    //     }
+    //   }
+    //   try {
+    //     executeAction()
+    //   } catch (err) {
+    //     setSuccess(false)
+    //   }
+
+    //   setAction(undefined)
+    // }
   }, [action])
 
   useEffect(() => {
